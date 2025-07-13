@@ -1,0 +1,64 @@
+{
+  "hero_title": "ThdaNet",
+  "hero_tagline": "Internet ilimitada 4G/5G para Android",
+  "intro_text": "Navegue <strong class=\"highlight\">sem limites</strong> com nosso plano de internet ilimitada compatível com as principais operadoras do Brasil. <strong>Rápido, estável e sem bloqueios!</strong>",
+  "footer": {
+    "logo_url": "",
+    "logo_text": "THDA",
+    "copyright_text": "© 2025 ThdaNet - Todos os direitos reservados"
+  },
+  "visibility": {
+    "reseller_section": false,
+    "referral_program": false,
+    "how_it_works_section": false,
+    "free_trial_section": true
+  },
+  "cores": {
+    "primaria": "#0066cc",
+    "primaria_escura": "#004d99",
+    "secundaria": "#e6f2ff"
+  },
+  "links": {
+    "whatsapp": "https://wa.me/5531973089850",
+    "whatsapp_number": "(31) 97308-9850",
+    "telegram": "",
+    "pix_key": "thdanet@gmail.com"
+  },
+  "horario_atendimento": [
+    {
+      "titulo": "Segunda a Quinta",
+      "icone": "fas fa-calendar-day",
+      "horarios": [
+        {
+          "horario": "18h às 22h"
+        }
+      ]
+    }
+  ],
+  "redes_sociais": [
+    {
+      "nome": "WhatsApp",
+      "url": "https://wa.me/5531973089850",
+      "icone": "fab fa-whatsapp"
+    },
+    {
+      "nome": "Instagram",
+      "url": "https://www.instagram.com/thdanet7?igsh=a2g2eXBta2hjeGF4",
+      "icone": "fab fa-instagram"
+    }
+  ],
+  "free_trial": {
+    "title": "Experimente Grátis",
+    "text": "Oferecemos 1 hora de internet ilimitada gratuita para você testar nossa qualidade antes de assinar qualquer plano!"
+  },
+  "planos_pessoais": [
+    {
+      "nome": "Mensal",
+      "preco": 9.90,
+      "duracao": "30 dias de internet ilimitada",
+      "popular": true
+    }
+  ],
+  "planos_revenda_mensal": [],
+  "planos_revenda_creditos": []
+}
