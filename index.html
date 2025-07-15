@@ -246,7 +246,10 @@
     }
     
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       padding: 15px 30px;
       background: var(--primary);
       color: var(--light);
@@ -259,7 +262,7 @@
       text-align: center;
       margin-top: 20px;
       width: 100%;
-      max-width: 250px;
+      max-width: 280px;
       font-size: 1rem;
       letter-spacing: 0.5px;
     }
@@ -410,31 +413,7 @@
       color: var(--primary);
       margin-right: 5px;
     }
-    
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 25px 0;
-    }
-    
-    .social-links a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--dark);
-      color: var(--light);
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-    }
-    
-    .social-links a:hover {
-      transform: translateY(-3px);
-    }
-    
+        
     footer {
       text-align: center;
       padding: 25px;
@@ -460,7 +439,6 @@
       margin-top: 10px;
     }
     
-    /* Seção de Teste Grátis */
     #free-trial-section {
       background: var(--light);
       padding: 30px;
@@ -481,8 +459,14 @@
     #free-trial-section .benefits-list li::before {
       color: var(--primary);
     }
+    
+    .contact-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
         
-    /* Animations */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -546,12 +530,12 @@
       </div>
       
       <div id="working-hours-container" class="working-hours fade-in">
-        </div>
+      </div>
 
       <div class="contact-section fade-in">
         <h3>Precisa de ajuda? Fale com nosso suporte</h3>
-        <div id="social-links-container" class="social-links">
-          </div>
+        <div id="social-links-container" style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%;">
+        </div>
         <p class="note"><i class="fas fa-headset"></i> Atendimento rápido e personalizado</p>
       </div>
     </div>
@@ -571,14 +555,12 @@
         if (!response.ok) throw new Error(`Erro de rede: ${response.statusText}`);
         const data = await response.json();
 
-        // Aplicar cores
         if (data.cores) {
           document.documentElement.style.setProperty('--primary', data.cores.primaria || '#0066cc');
           document.documentElement.style.setProperty('--primary-dark', data.cores.primaria_escura || '#004d99');
           document.documentElement.style.setProperty('--secondary', data.cores.secundaria || '#e6f2ff');
         }
 
-        // Preencher textos e links
         document.getElementById('hero-title').textContent = data.hero_title || 'ThdaNet';
         document.getElementById('hero-tagline').textContent = data.hero_tagline || 'Internet ilimitada 4G/5G para Android';
         document.getElementById('intro-text').innerHTML = data.intro_text || '';
@@ -591,13 +573,11 @@
           whatsappTesteGratis.href = `${whatsappBaseLink}?text=Olá! Gostaria de fazer o teste grátis.`;
         }
 
-        // Visibilidade das seções
         if (data.visibility) {
             const freeTrialSection = document.getElementById('free-trial-section');
             if(freeTrialSection) freeTrialSection.style.display = data.visibility.free_trial_section ? 'block' : 'none';
         }
 
-        // Gerar Planos Pessoais
         const plansContainer = document.getElementById('plans-grid-pessoal');
         if (plansContainer && data.planos_pessoais) {
           plansContainer.innerHTML = data.planos_pessoais.map(plano => {
@@ -624,7 +604,6 @@
           }).join('');
         }
         
-        // Seção "Teste Grátis"
         if (data.free_trial) {
             const freeTrialTitle = document.getElementById('free-trial-title');
             const freeTrialText = document.getElementById('free-trial-text');
@@ -632,7 +611,6 @@
             if (freeTrialText) freeTrialText.textContent = data.free_trial.text;
         }
 
-        // Horário de Atendimento
         const workingHoursContainer = document.getElementById('working-hours-container');
         if (workingHoursContainer && data.horario_atendimento && data.horario_atendimento.length > 0) {
             workingHoursContainer.innerHTML = '<h3>Horário de Atendimento</h3>';
@@ -645,17 +623,20 @@
             workingHoursContainer.appendChild(hoursGrid);
         }
         
-        // Redes Sociais
         const socialLinksContainer = document.getElementById('social-links-container');
         if (socialLinksContainer && data.redes_sociais) {
-            socialLinksContainer.innerHTML = data.redes_sociais.map(link => 
-            `<a href="${link.url}" target="_blank" title="${link.nome}" class="btn" style="background:${link.nome.toLowerCase() === 'whatsapp' ? 'var(--whatsapp)' : 'var(--instagram)'}; margin: 5px auto;">
-              <i class="${link.icone}"></i> ${link.nome}
-            </a>`
-          ).join('');
+            socialLinksContainer.innerHTML = data.redes_sociais.map(link => {
+                let buttonClass = 'btn-whatsapp';
+                if (link.nome.toLowerCase().includes('instagram')) {
+                    buttonClass = 'btn-instagram';
+                }
+                return `<a href="${link.url}" target="_blank" title="${link.nome}" class="btn ${buttonClass}">
+                          <i class="${link.icone}"></i>
+                          <span>${link.nome}</span>
+                        </a>`;
+            }).join('');
         }
         
-        // Rodapé
         const footerLogoContainer = document.getElementById('footer-logo-container');
         if (footerLogoContainer && data.footer) {
           if (data.footer.logo_url) {
