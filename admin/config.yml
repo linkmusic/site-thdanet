@@ -92,3 +92,13 @@ collections:
               - { label: "Nome", name: "nome", widget: "string" }
               - { label: "Preço", name: "preco", widget: "number" }
               - { label: "Benefícios (separados por ';')", name: "beneficios", widget: "string" }
+  - name: "tutorial"
+    label: "Tutorial"
+    description: "Aprenda a usar o painel."
+    files:
+      - name: "tutorial"
+        label: "Como usar o painel"
+        file: "_tutorial/tutorial.md"
+        fields:
+          - { label: "Título", name: "title", widget: "string" }
+          - { label: "Conteúdo do Tutorial", name: "body", widget: "markdown" }
